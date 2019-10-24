@@ -4,7 +4,7 @@ alias cd=ggg
 
 function ggg() {
     local shell_name=$(basename $SHELL) 
-    local prog_name=$(basename $0)
+    local prog_name=${FUNCNAME[0]}
     local ggg_path=$1
 
     if [[ -z $1 ]];then
@@ -50,7 +50,7 @@ function path_queue_push() {
             echo $line >> $PATH_QUEUE_FILE
             return 0
         fi
-    done < $PATH_QUEUE_FILE
+    done < <(tac $PATH_QUEUE_FILE)
 
     echo $element >> $PATH_QUEUE_FILE
     local nline=$(wc -l < $PATH_QUEUE_FILE)

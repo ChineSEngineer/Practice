@@ -4,7 +4,7 @@ JAVA_FOLDER="${EXAM_FOLDER}/src/main/java"
 TEST_FOLDER="${JAVA_FOLDER}/com/test"
 EXAM_JAR_FILE="${EXAM_FOLDER}/fall2019-midterm.jar"
 EXAM_EMAIL="hs3880@nyu.edu"
-EXAM_PASSWORD="MjNhYzY0YTktYTcyMC00NGU5LWJjMjItNTcwOGIzN2NkMTlm"
+EXAM_PASSWORD="***"
 
 function answer-file() {
     local problem=$1

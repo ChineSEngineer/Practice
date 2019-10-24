@@ -1,0 +1,11 @@
+EHLO nyu.edu
+MAIL FROM:<targetEmail>
+RCPT TO:<hs3880@nyu.edu>
+DATA
+From: targetEmail
+To: hs3880@nyu.edu
+Subject: Introduce my email
+Hi,
+Please remember my email: targetEmail
+.
+QUIT

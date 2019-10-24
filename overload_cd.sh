@@ -1,8 +1,8 @@
 #!usr/bin/env bash
 export PATH_QUEUE_FILE=~/.path_queue_file
-alias cd=ggg
+alias cd=cdcd
 
-function ggg() {
+function cdcd() {
     local shell_name=$(basename $SHELL) 
     local prog_name=${FUNCNAME[0]}
     local ggg_path=$1
@@ -75,3 +75,19 @@ function path_queue_query() {
     return 1
 }
 
+_overload_cd_autocomplete()
+{
+    #_script_commands=$(/path/to/your/script.sh shortlist)
+    unset _overload_cd_commands
+    while IFS='' read -r line;do
+        _overload_cd_commands="${_overload_cd_commands} $(basename $line)"
+    done < <(tac ~/.path_queue_file)
+
+    local cur
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY+=( $(compgen -W "${_overload_cd_commands}" -- ${cur}) )
+
+    return 0
+}
+complete -o nospace -F _overload_cd_autocomplete cdcd

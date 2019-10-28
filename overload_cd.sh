@@ -5,18 +5,14 @@ alias cd=cdcd
 function cdcd() {
     local shell_name=$(basename $SHELL) 
     local prog_name=${FUNCNAME[0]}
-    local ggg_path=$1
+    local ggg_path=$1  #ggg_path can be empty
 
-    if [[ -z $1 ]];then
-        echo "$shell_name: Usage: $prog_name [path]"
-        false
-    elif [[ ! -f "$PATH_QUEUE_FILE" ]];then
+    if [[ ! -f "$PATH_QUEUE_FILE" ]];then
         echo "$shell_name: $prog_name: Please set variable PATH_QUEUE_FILE"
         false
     elif [[ $ggg_path == "-" || $ggg_path == "." || $ggg_path == ".." || $ggg_path == "../*" ]];then
         builtin cd $ggg_path
     else 
-
         builtin cd $ggg_path > /dev/null 2>&1
         if [[ $? == 1 ]];then
             local queried_path
@@ -77,7 +73,7 @@ function path_queue_query() {
 
 _overload_cd_autocomplete()
 {
-    #_script_commands=$(/path/to/your/script.sh shortlist)
+    local _overload_cd_commands
     unset _overload_cd_commands
     while IFS='' read -r line;do
         _overload_cd_commands="${_overload_cd_commands} $(basename $line)"

@@ -10,8 +10,8 @@ function cdcd() {
     if [[ ! -f "$PATH_QUEUE_FILE" ]];then
         echo "$shell_name: $prog_name: Please set variable PATH_QUEUE_FILE"
         false
-    elif [[ $ggg_path == "-" || $ggg_path == "." || $ggg_path == ".." || $ggg_path == "../*" ]];then
-        builtin cd $ggg_path
+    elif [[ $ggg_path == "-h" || $ggg_path == "-L" || $ggg_path == "-P" || $ggg_path == "-@" || $ggg_path == "-" || $ggg_path == "." || $ggg_path == ".." || $ggg_path == "../*" ]];then
+        builtin cd "$@"
     else 
         builtin cd $ggg_path > /dev/null 2>&1
         if [[ $? == 1 ]];then

@@ -181,6 +181,8 @@ let g:ycm_complete_in_strings=1
 "let g:ycm_key_invoke_completion = '<c-z>'
 let g:ycm_disable_signature_help = 1 
 let g:ycm_auto_hover = ''
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 set completeopt=menu,menuone
 
@@ -285,24 +287,6 @@ let g:cpp_experimental_simple_template_highlight = 1
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-"-------------------------regular--------------------------
-set nu
-" quickfix窗口跳转，如果该文件已经打开，切换到其窗口，否则新窗口显示
-set switchbuf=useopen,usetab,newtab
-
-
-
 "-------------------------functions--------------------------
 " Enable ALT
 function! Terminal_MetaMode(mode)
@@ -347,3 +331,27 @@ function! Terminal_MetaMode(mode)
 endfunc
 
 call Terminal_MetaMode(0)
+
+
+
+
+"-------------------------regular--------------------------
+" quickfix窗口跳转，如果该文件已经打开，切换到其窗口，否则新窗口显示
+set switchbuf=useopen,usetab,newtab
+set number
+"set ruler
+set hlsearch
+
+syntax on
+set tabstop=4
+set expandtab
+
+hi CursorLine term=bold cterm=bold guibg=Grey40
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
+
+set tags=./.tags;,.tags
+
+colorscheme molokai

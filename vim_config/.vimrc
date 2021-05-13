@@ -342,10 +342,17 @@ set switchbuf=useopen,usetab,newtab
 set number
 "set ruler
 set hlsearch
-
 syntax on
+
+" Tab长度是4
 set tabstop=4
+" 括号后的自动缩进是四格
+set shiftwidth=4
+" 缩进用空格表示
 set expandtab
+" 具体见:https://segmentfault.com/a/1190000021133524 这里使用它，让BS可以一次删除shiftwidth个空格
+set softtabstop=-1
+
 
 hi CursorLine term=bold cterm=bold guibg=Grey40
 let &t_ti.="\e[1 q"

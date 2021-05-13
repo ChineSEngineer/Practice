@@ -34,6 +34,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'ChineSEngineer/a.vim'
 
 call plug#end()
 

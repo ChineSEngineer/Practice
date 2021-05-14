@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo apt-get update
 sudo apt-get -y install build-essential cmake
 sudo apt-get -y install cppcheck
 sudo apt-get -y install universal-ctags
@@ -8,6 +9,15 @@ sudo apt-get -y install global cmake python-dev python3-dev
 # Install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# add color scheme
+mkdir -p ~/.vim/colors/
+cp ./molokai.vim ~/.vim/colors
+
+# cp vimrc
+cp .vimrc ~/.vimrc
+vim +PlugInstall +qall
+
 
 # Add swapfile to compile YCM
 sudo fallocate -l 1G ~/swapfile
@@ -30,8 +40,5 @@ sudo swapoff ~/swapfile
 sudo rm ~/swapfile
 
 # mv YCM conf file
-mv .ycm_extra_conf.py ~/.vim/
+cp .ycm_extra_conf.py ~/.vim/
 
-# add color scheme
-mkdir -p ~/.vim/colors/
-mv ./molokai.vim ~/.vim/colors

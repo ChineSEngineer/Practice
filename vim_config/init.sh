@@ -19,12 +19,17 @@ cp .vimrc ~/.vimrc
 vim +PlugInstall +qall
 
 
-# Add swapfile to compile YCM
-sudo fallocate -l 1G ~/swapfile
-sudo dd if=/dev/zero of=~/swapfile bs=1024 count=1048576
-sudo chmod 600 ~/swapfile
-sudo mkswap ~/swapfile
-sudo swapon ~/swapfile
+# Add swapfile to compile YCM if necessary
+free_mem=$(sudo free | grep Mem | awk '{print $2}')
+echo "Current free memory= " $free_mem
+if [[ $free_mem -lt 1572864 ]]; then
+    echo "Memory less then 1.5G, Add swapfile"
+    sudo fallocate -l 1G ~/swapfile
+    sudo dd if=/dev/zero of=~/swapfile bs=1024 count=1048576
+    sudo chmod 600 ~/swapfile
+    sudo mkswap ~/swapfile
+    sudo swapon ~/swapfile
+fi
 
 # verify swapfile
 sudo swapon --show

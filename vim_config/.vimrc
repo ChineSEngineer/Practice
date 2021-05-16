@@ -5,6 +5,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/vim-preview'
 
+
 " Compile
 Plug 'skywind3000/asyncrun.vim'
 
@@ -33,6 +34,7 @@ Plug 'Shougo/echodoc.vim'
 " Tools
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ChineSEngineer/a.vim'
 
@@ -50,10 +52,10 @@ let g:gutentags_ctags_tagfile = '.tags'
 " 同时开启 ctags 和 gtags 支持：
 let g:gutentags_modules = []
 if executable('ctags')
-	let g:gutentags_modules += ['ctags']
+    let g:gutentags_modules += ['ctags']
 endif
 if executable('gtags-cscope') && executable('gtags')
-	let g:gutentags_modules += ['gtags_cscope']
+    let g:gutentags_modules += ['gtags_cscope']
 endif
 
 " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
@@ -173,14 +175,14 @@ highlight SignColumn ctermbg=none
 
 
 "-------------------------YouCompleteMe--------------------------
-let g:ycm_add_preview_to_completeopt = 0 
-let g:ycm_show_diagnostics_ui = 0 
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2 
-let g:ycm_collect_identifiers_from_comments_and_strings = 1 
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings=1
 "let g:ycm_key_invoke_completion = '<c-z>'
-let g:ycm_disable_signature_help = 1 
+let g:ycm_disable_signature_help = 1
 let g:ycm_auto_hover = ''
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
@@ -265,7 +267,7 @@ let g:ycm_filetype_whitelist = {
 
 "-------------------------LeaderF--------------------------
 noremap <m-p> :cclose<cr>:Leaderf! --nowrap function<cr>
- 
+
 
 
 
@@ -282,6 +284,26 @@ let g:cpp_concepts_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
 "文件较大时使用下面的设置高亮模板速度较快，但会有一些小错误
 "let g:cpp_experimental_template_highlight = 1
+
+
+
+
+"-------------------------air-line--------------------------
+let g:airline_powerline_fonts = 1
+let g:airline_theme='heyi'
+
+" powerline symbols
+let g:airline_symbols={}
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.colnr = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.dirty='⚡'
 
 
 
@@ -335,7 +357,6 @@ call Terminal_MetaMode(0)
 
 
 
-
 "-------------------------regular--------------------------
 " quickfix窗口跳转，如果该文件已经打开，切换到其窗口，否则新窗口显示
 set switchbuf=useopen,usetab,newtab
@@ -352,6 +373,10 @@ set shiftwidth=4
 set expandtab
 " 具体见:https://segmentfault.com/a/1190000021133524 这里使用它，让BS可以一次删除shiftwidth个空格
 set softtabstop=-1
+" make the backspace work like in most other programs
+set backspace=indent,eol,start
+" enable scroll in tmux
+set mouse=a
 
 
 hi CursorLine term=bold cterm=bold guibg=Grey40
@@ -361,5 +386,7 @@ let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
 set tags=./.tags;,.tags
+set t_Co=256
 
 colorscheme molokai
+

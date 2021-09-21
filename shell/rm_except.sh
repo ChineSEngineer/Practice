@@ -22,7 +22,7 @@ function rm_except() {
             fi
         else
             if [[ "$key" =~ .*/$ ]]; then  # endwith /
-                key=${key:-1}
+                key=${key::-1}
             fi
             if [[ "$key" =~ ^\./.* ]]; then   # startwith ./
                 key=${key:2}
